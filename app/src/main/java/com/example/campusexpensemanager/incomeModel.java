@@ -6,6 +6,7 @@ public class incomeModel {
     private String type;
     private String note;
     private String category;
+    private String date;
 
     // Constructor with all fields
     public incomeModel(int id, String amount, String type, String note, String category) {
@@ -21,8 +22,8 @@ public class incomeModel {
     }
 
     // Getter and setter methods
-    public int getId() {
-        return id;
+    public String getId() {
+        return String.valueOf(id);
     }
 
     public void setId(int id) {
@@ -59,5 +60,13 @@ public class incomeModel {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

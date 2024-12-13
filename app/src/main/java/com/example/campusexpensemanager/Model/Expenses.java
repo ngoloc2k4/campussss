@@ -71,4 +71,12 @@ public class Expenses {
     public String getDate() {
         return date;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getCategory() {
+        return category;
+    }
 }
