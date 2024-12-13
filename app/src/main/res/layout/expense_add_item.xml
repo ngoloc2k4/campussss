@@ -57,7 +57,35 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="3"
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="2"
+            android:text="Category: "
+            android:textColor="@color/textColor"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="3"
+            android:entries="@array/category_array"
             android:textColor="@color/textColor"
             android:textSize="20sp" />
 
@@ -86,7 +114,6 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_weight="3"
-
             android:textColor="@color/textColor"
             android:textSize="20sp" />
 
@@ -106,12 +133,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
-
             android:text="Cancel"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16sp"
-          />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btn_save"
@@ -124,9 +149,7 @@
             android:text="Save"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16sp"
-
-            />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

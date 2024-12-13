@@ -117,4 +117,26 @@ public class ExpenseFragment extends Fragment {
         totalExpense = String.valueOf(total);
         tvExpense.setText(totalExpense +" VND");
     }
+
+    private void addExpense() {
+        String userId = getUserId(); // Method to get the current user ID
+        Expenses expense = new Expenses();
+        expense.setAmount(etAmount.getText().toString());
+        expense.setType(etType.getText().toString());
+        expense.setNote(etNote.getText().toString());
+        expense.setCategory(spinnerCategory.getSelectedItem().toString());
+
+        databaseHandler1.addExpense(expense, userId);
+        refreshData();
+    }
+
+    private void addCategory(String category, String type) {
+        String userId = getUserId(); // Method to get the current user ID
+        databaseHandler1.addCategory(category, type, userId);
+    }
+
+    private List<String> getCategories(String type) {
+        String userId = getUserId(); // Method to get the current user ID
+        return databaseHandler1.getCategoriesByTypeAndUserId(type, userId);
+    }
 }

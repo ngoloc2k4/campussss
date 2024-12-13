@@ -22,6 +22,8 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
     public static final String COL3 = "TYPE";
     public static final String COL4 = "NOTE";
     public static final String COL5 = "DATE";
+    public static final String COLUMN_USER_ID = "USER_ID";
+    public static final String COLUMN_CATEGORY = "CATEGORY";
 
     public DatabaseHandler1(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -29,7 +31,7 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT," + "AMOUNT TEXT," + "TYPE TEXT," + "NOTE TEXT," + "DATE TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT," + "AMOUNT TEXT," + "TYPE TEXT," + "NOTE TEXT," + "DATE TEXT," + "USER_ID TEXT," + "CATEGORY TEXT)";
         db.execSQL(createTable);
     }
 
@@ -98,5 +100,71 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
         return incomeModelList;
     }
 
+    public boolean addIncome(incomeModel income, String userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USER_ID, userId);
+        values.put(COLUMN_AMOUNT, income.getAmount());
+        values.put(COLUMN_TYPE, income.getType());
+        values.put(COLUMN_NOTE, income.getNote());
+        values.put(COLUMN_CATEGORY, income.getCategory());
 
+        long result = db.insert(TABLE_NAME, null, values);
+        db.close();
+        return result != -1;
+    }
+
+    public List<incomeModel> getAllIncomeByUserId(String userId) {
+        List<incomeModel> incomeList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME, null, COLUMN_USER_ID + "=?", new String[]{userId}, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                incomeModel income = new incomeModel();
+                income.setId(cursor.getInt(cursor.getColumnIndex(COL1)));
+                income.setAmount(cursor.getString(cursor.getColumnIndex(COL2)));
+                income.setType(cursor.getString(cursor.getColumnIndex(COL3)));
+                income.setNote(cursor.getString(cursor.getColumnIndex(COL4)));
+                income.setCategory(cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY)));
+                incomeList.add(income);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return incomeList;
+    }
+
+    public void clearOldData() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, null, null);
+        db.close();
+    }
+
+    public boolean addCategory(String category, String type, String userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("CATEGORY", category);
+        values.put("TYPE", type);
+        values.put("USER_ID", userId);
+
+        long result = db.insert("categories", null, values);
+        db.close();
+        return result != -1;
+    }
+
+    public List<String> getCategoriesByTypeAndUserId(String type, String userId) {
+        List<String> categories = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query("categories", new String[]{"CATEGORY"}, "TYPE=? AND USER_ID=?", new String[]{type, userId}, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                categories.add(cursor.getString(cursor.getColumnIndex("CATEGORY")));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return categories;
+    }
 }
