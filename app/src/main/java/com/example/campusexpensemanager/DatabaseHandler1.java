@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+// Import the Expenses class
+import com.example.campusexpensemanager.Model.Expenses;
 import com.example.campusexpensemanager.incomeModel;
 
 import java.util.ArrayList;
@@ -174,6 +176,15 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
     }
 
     public void addExpense(Expenses expense, String userId) {
-        // Implement the method to add an expense
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_USER_ID, userId);
+        values.put(COLUMN_AMOUNT, expense.getAmount());
+        values.put(COLUMN_TYPE, expense.getType());
+        values.put(COLUMN_NOTE, expense.getNote());
+        values.put(COLUMN_CATEGORY, expense.getCategory());
+
+        db.insert(TABLE_NAME, null, values);
+        db.close();
     }
 }

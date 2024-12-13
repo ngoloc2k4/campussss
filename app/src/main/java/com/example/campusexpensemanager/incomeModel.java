@@ -1,20 +1,31 @@
 package com.example.campusexpensemanager;
 
 public class incomeModel {
-    String id, amount, type, note, date;
+    private int id;
+    private String amount;
+    private String type;
+    private String note;
+    private String category;
 
-    public incomeModel(int id, String amount, String type, String note) {
+    // Constructor with all fields
+    public incomeModel(int id, String amount, String type, String note, String category) {
+        this.id = id;
+        this.amount = amount;
+        this.type = type;
+        this.note = note;
+        this.category = category;
     }
 
-    public String getDate() {
-        return date;
+    // Default constructor
+    public incomeModel() {
     }
 
-    public String getId() {
+    // Getter and setter methods
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -24,18 +35,6 @@ public class incomeModel {
 
     public void setAmount(String amount) {
         this.amount = amount;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public incomeModel(String id, String amount, String type, String note, String date) {
-        this.id = id;
-        this.amount = amount;
-        this.type = type;
-        this.note = note;
-        this.date = date;
     }
 
     public String getType() {
@@ -54,4 +53,11 @@ public class incomeModel {
         this.note = note;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }
