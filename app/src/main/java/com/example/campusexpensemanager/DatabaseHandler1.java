@@ -27,12 +27,6 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
     public static final String COLUMN_USER_ID = "USER_ID";
     public static final String COLUMN_CATEGORY = "CATEGORY";
 
-    // Define the missing columns
-    private static final String COLUMN_AMOUNT = "amount";
-    private static final String COLUMN_TYPE = "type";
-    private static final String COLUMN_NOTE = "note";
-    private static final String COLUMN_CATEGORY = "category";
-
     public DatabaseHandler1(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
@@ -101,7 +95,13 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
             }
 
             while (data.moveToNext()) {
-                incomeModelList.add(new incomeModel(data.getString(0), data.getString(1), data.getString(2), data.getString(3), data.getString(4)));
+                incomeModelList.add(new incomeModel(
+                    data.getInt(data.getColumnIndex(COL1)), 
+                    data.getString(data.getColumnIndex(COL2)), 
+                    data.getString(data.getColumnIndex(COL3)), 
+                    data.getString(data.getColumnIndex(COL4)), 
+                    data.getString(data.getColumnIndex(COL5))
+                ));
             }
         }
 
@@ -112,9 +112,9 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_USER_ID, userId);
-        values.put(COLUMN_AMOUNT, income.getAmount());
-        values.put(COLUMN_TYPE, income.getType());
-        values.put(COLUMN_NOTE, income.getNote());
+        values.put(COL2, income.getAmount());
+        values.put(COL3, income.getType());
+        values.put(COL4, income.getNote());
         values.put(COLUMN_CATEGORY, income.getCategory());
 
         long result = db.insert(TABLE_NAME, null, values);
@@ -135,6 +135,7 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
                 income.setType(cursor.getString(cursor.getColumnIndex(COL3)));
                 income.setNote(cursor.getString(cursor.getColumnIndex(COL4)));
                 income.setCategory(cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY)));
+                income.setDate(cursor.getString(cursor.getColumnIndex(COL5))); // Add missing date field
                 incomeList.add(income);
             } while (cursor.moveToNext());
         }
@@ -180,9 +181,9 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_USER_ID, userId);
-        values.put(COLUMN_AMOUNT, expense.getAmount());
-        values.put(COLUMN_TYPE, expense.getType());
-        values.put(COLUMN_NOTE, expense.getNote());
+        values.put(COL2, expense.getAmount());
+        values.put(COL3, expense.getType());
+        values.put(COL4, expense.getNote());
         values.put(COLUMN_CATEGORY, expense.getCategory());
 
         db.insert(TABLE_NAME, null, values);
