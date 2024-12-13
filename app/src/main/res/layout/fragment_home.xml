@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".HomeFragment">
 
     <Button
@@ -41,7 +40,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_text2"
-
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -136,4 +134,11 @@
         android:layout_marginTop="8dp"
         android:scrollbars="horizontal"
         tools:listitem="@layout/layout_expense_item" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewBudget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/rv_expense"/>
 </RelativeLayout>

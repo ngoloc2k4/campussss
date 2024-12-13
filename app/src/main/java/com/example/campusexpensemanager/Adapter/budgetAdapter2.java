@@ -38,11 +38,15 @@ public class budgetAdapter2 extends RecyclerView.Adapter<budgetAdapter2.viewhold
     @Override
     public void onBindViewHolder(@NonNull budgetAdapter2.viewholder holder, int position) {
         incomeModel model = incomeModelList.get(position);
-        holder.tv_incomeAmount.setText(model.getAmount()+ " VND");
+        holder.tv_incomeAmount.setText(model.getAmount() + " VND");
 
         Calendar calendar = Calendar.getInstance();
         try {
-            calendar.setTimeInMillis(Long.parseLong(model.getDate()));
+            if (model.getDate() != null && !model.getDate().isEmpty()) {
+                calendar.setTimeInMillis(Long.parseLong(model.getDate()));
+            } else {
+                calendar.setTimeInMillis(System.currentTimeMillis());
+            }
         } catch (NumberFormatException e) {
             // Handle the exception, e.g., set a default date or log the error
             calendar.setTimeInMillis(System.currentTimeMillis());

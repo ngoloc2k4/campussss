@@ -97,17 +97,13 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
         Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 
         if (data.getCount() == 0) {
-
+            // No data found
         } else {
-            if (incomeModelList == null) {
-                incomeModelList = new ArrayList<>();
-            }
-
             while (data.moveToNext()) {
                 incomeModelList.add(new incomeModel(data.getInt(0), data.getString(1), data.getString(2), data.getString(3), data.getString(4)));
             }
         }
-
+        data.close();
         return incomeModelList;
     }
 
