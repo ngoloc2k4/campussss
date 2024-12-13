@@ -51,7 +51,16 @@ public class expenseAdapter2 extends RecyclerView.Adapter<expenseAdapter2.viewho
         holder.tv_Note.setText(model.getNote());
 
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(Long.parseLong(model.getDate()));
+        try {
+            if (model.getDate() != null && !model.getDate().isEmpty()) {
+                calendar.setTimeInMillis(Long.parseLong(model.getDate()));
+            } else {
+                calendar.setTimeInMillis(System.currentTimeMillis());
+            }
+        } catch (NumberFormatException e) {
+            // Handle the exception, e.g., set a default date or log the error
+            calendar.setTimeInMillis(System.currentTimeMillis());
+        }
         String formattedDate = DateFormat.format("dd/MM/yyyy", calendar).toString();
 
         holder.tv_Date.setText(formattedDate);
