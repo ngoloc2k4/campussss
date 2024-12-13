@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -20,6 +22,9 @@ import java.util.List;
 
 public class BudgetFragment extends Fragment {
 
+    // Define the missing variables
+    private EditText etAmount, etType, etNote;
+    private Spinner spinnerCategory;
     private DatabaseHandler1 databaseHandler1;
     private List<incomeModel> incomeModelList = new ArrayList<>();
     private TextView tvIncome;
@@ -98,5 +103,10 @@ public class BudgetFragment extends Fragment {
     // Method to refresh data in the fragment
     public void refreshData1() {
         loadBudget(); // Reload budget data
+    }
+
+    private String getUserId() {
+        // Implement the method to get the current user ID
+        return "user@example.com"; // Replace with actual user ID retrieval logic
     }
 }

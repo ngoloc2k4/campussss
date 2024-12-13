@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.campusexpensemanager.Adapter.expenseAdapter2;
@@ -37,6 +39,11 @@ public class ExpenseFragment extends Fragment {
     private ImageView iv_expensePie;
 
     private expenseAdapter2 expenseAdapter;
+
+    // Define the missing variables
+    private EditText etAmount, etType, etNote;
+    private Spinner spinnerCategory;
+    private DatabaseHandler1 databaseHandler1;
 
     public ExpenseFragment() {
         // Required empty public constructor
@@ -138,5 +145,10 @@ public class ExpenseFragment extends Fragment {
     private List<String> getCategories(String type) {
         String userId = getUserId(); // Method to get the current user ID
         return databaseHandler1.getCategoriesByTypeAndUserId(type, userId);
+    }
+
+    private String getUserId() {
+        // Implement the method to get the current user ID
+        return "user@example.com"; // Replace with actual user ID retrieval logic
     }
 }
