@@ -40,6 +40,10 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT," + "AMOUNT TEXT," + "TYPE TEXT," + "NOTE TEXT," + "DATE TEXT," + "USER_ID TEXT," + "CATEGORY TEXT)";
         db.execSQL(createTable);
+
+        // Create categories table
+        String createCategoriesTable = "CREATE TABLE categories (ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPE TEXT, USER_ID TEXT, CATEGORY TEXT)";
+        db.execSQL(createCategoriesTable);
     }
 
     @Override

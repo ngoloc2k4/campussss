@@ -40,7 +40,12 @@ public class expenseAdapter extends RecyclerView.Adapter<expenseAdapter.viewhold
         holder.tv_incomeAmount.setText(model.getAmount()+" VND");
 
         Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(Long.parseLong(model.getDate()));
+        try {
+            calendar.setTimeInMillis(Long.parseLong(model.getDate()));
+        } catch (NumberFormatException e) {
+            // Handle the exception, e.g., set a default date or log the error
+            calendar.setTimeInMillis(System.currentTimeMillis());
+        }
         String formattedDate = DateFormat.format("dd/MM/yyyy", calendar).toString();
 
         holder.tv_incomeDate.setText(formattedDate);
