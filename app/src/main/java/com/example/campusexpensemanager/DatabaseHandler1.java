@@ -29,7 +29,6 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
     private static final String COLUMN_AMOUNT = "amount";
     private static final String COLUMN_TYPE = "type";
     private static final String COLUMN_NOTE = "note";
-    private static final String COLUMN_CATEGORY = "category";
 
     public DatabaseHandler1(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
