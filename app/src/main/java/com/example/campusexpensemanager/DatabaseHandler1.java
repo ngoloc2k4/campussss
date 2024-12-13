@@ -27,6 +27,11 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
     public static final String COLUMN_USER_ID = "USER_ID";
     public static final String COLUMN_CATEGORY = "CATEGORY";
 
+    // Define the missing columns
+    private static final String COLUMN_AMOUNT = "amount";
+    private static final String COLUMN_TYPE = "type";
+    private static final String COLUMN_NOTE = "note";
+
     public DatabaseHandler1(@Nullable Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
