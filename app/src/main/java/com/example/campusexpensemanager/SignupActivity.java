@@ -46,6 +46,23 @@ public class SignupActivity extends AppCompatActivity {
                         boolean insert = databaseHelper.insertData(email, password, name, age, phone);
                         if (insert) {
                             Toast.makeText(SignupActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                            
+                            // Add the new code here
+                            DatabaseHandler1 dbHandler = new DatabaseHandler1(this);
+                            dbHandler.clearOldData(); // Clear old data
+
+                            // Add default categories for the new user
+                            String[] defaultIncomeCategories = getResources().getStringArray(R.array.default_income_categories);
+                            String[] defaultExpenseCategories = getResources().getStringArray(R.array.default_expense_categories);
+
+                            for (String category : defaultIncomeCategories) {
+                                dbHandler.addCategory(category, "Income", email); // Assuming email is used as userId
+                            }
+
+                            for (String category : defaultExpenseCategories) {
+                                dbHandler.addCategory(category, "Expense", email); // Assuming email is used as userId
+                            }
+
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                             finish();
