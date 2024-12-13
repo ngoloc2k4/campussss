@@ -79,7 +79,7 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.viewholder
         alertDialog.show();
 
         btn_delete.setOnClickListener(v -> {
-            String id = String.valueOf(model.getId());
+            String id = model.getId();
             boolean isDeleted = databaseHandler1.delete(id);
             if (isDeleted) {
                 Toast.makeText(context, "Delete Success", Toast.LENGTH_SHORT).show();
@@ -91,7 +91,7 @@ public class BudgetAdapter extends RecyclerView.Adapter<BudgetAdapter.viewholder
         });
 
         btn_update.setOnClickListener(v -> {
-            String id = String.valueOf(model.getId());
+            String id = model.getId();
             String amount = etu_income.getText().toString();
             String type = etu_type.getText().toString();
             String note = etu_note.getText().toString();

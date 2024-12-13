@@ -127,7 +127,7 @@ public class ExpenseFragment extends Fragment {
 
     private void addExpense() {
         String userId = getUserId(); // Method to get the current user ID
-        Expenses expense = new Expenses("", "", "", "", ""); // Use the appropriate constructor
+        Expenses expense = new Expenses();
         expense.setAmount(etAmount.getText().toString());
         expense.setType(etType.getText().toString());
         expense.setNote(etNote.getText().toString());

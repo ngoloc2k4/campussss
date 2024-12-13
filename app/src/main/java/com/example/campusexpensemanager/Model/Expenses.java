@@ -1,12 +1,17 @@
 package com.example.campusexpensemanager.Model;
 
-
 public class Expenses {
     public String id;
     public String name;
     public String amount;
     public String note;
     public String date;
+    public String type;
+    public String category;
+
+    // No-argument constructor
+    public Expenses() {
+    }
 
     public Expenses(String amount) {
     }
@@ -18,8 +23,6 @@ public class Expenses {
         this.note = note;
         this.date = date;
     }
-
-
 
     public void setId(String id) {
         this.id = id;
@@ -38,7 +41,15 @@ public class Expenses {
     }
 
     public void setDate(String date) {
-        date = date;
+        this.date = date;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getId() {

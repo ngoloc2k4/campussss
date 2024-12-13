@@ -95,13 +95,7 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
             }
 
             while (data.moveToNext()) {
-                incomeModelList.add(new incomeModel(
-                    data.getInt(data.getColumnIndex(COL1)), 
-                    data.getString(data.getColumnIndex(COL2)), 
-                    data.getString(data.getColumnIndex(COL3)), 
-                    data.getString(data.getColumnIndex(COL4)), 
-                    data.getString(data.getColumnIndex(COL5))
-                ));
+                incomeModelList.add(new incomeModel(data.getInt(0), data.getString(1), data.getString(2), data.getString(3), data.getString(4)));
             }
         }
 
@@ -135,7 +129,7 @@ public class DatabaseHandler1 extends SQLiteOpenHelper {
                 income.setType(cursor.getString(cursor.getColumnIndex(COL3)));
                 income.setNote(cursor.getString(cursor.getColumnIndex(COL4)));
                 income.setCategory(cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY)));
-                income.setDate(cursor.getString(cursor.getColumnIndex(COL5))); // Add missing date field
+                income.setDate(cursor.getString(cursor.getColumnIndex(COL5)));
                 incomeList.add(income);
             } while (cursor.moveToNext());
         }
